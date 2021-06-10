@@ -1,0 +1,28 @@
+{
+  "name": "dynamic-programming-with-ts",
+  "version": "1.0.0",
+  "description": "Dynamic Programming patters implemented with Typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Silvochka/dynamic-programming-with-ts.git"
+  },
+  "keywords": [
+    "dynamic programming",
+    "typescript",
+    "ts"
+  ],
+  "author": "Evgeniia Filatova",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Silvochka/dynamic-programming-with-ts/issues"
+  },
+  "homepage": "https://github.com/Silvochka/dynamic-programming-with-ts#readme",
+  "devDependencies": {
+    "typescript": "^4.3.2"
+  }
+}
