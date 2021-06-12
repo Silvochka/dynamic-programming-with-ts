@@ -7,10 +7,13 @@ describe('Number of subsets that gives required sum', () => {
     [[3, 4, 5, 6], 9, 2],
     [[1, 1, 2, 3], 4, 3],
     [[1, 2, 7, 1, 5], 9, 3],
-  ])('should return proper number of ways to create a set with given sum', (numbers: number[], requiredSum: number, expectedNumberOfSubsets: number) => {
-    let actualResult = numberOfSubsetsWithSum(numbers, requiredSum);
-    expect(actualResult).toBe(expectedNumberOfSubsets);
-  });
+  ])(
+    'should return proper number of ways to create a set with given sum',
+    (numbers: number[], requiredSum: number, expectedNumberOfSubsets: number) => {
+      let actualResult = numberOfSubsetsWithSum(numbers, requiredSum);
+      expect(actualResult).toBe(expectedNumberOfSubsets);
+    },
+  );
 
   it('should throw an error if any number is negative', async () => {
     expect(() => numberOfSubsetsWithSum([-1], 5)).toThrow('All numbers should be positive');

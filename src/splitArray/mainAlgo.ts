@@ -59,25 +59,25 @@ export const fillDPTableWithSums = (profits: number[], weights: number[], capaci
 /**
  * SImilar to the algorithm above. It solves the task of
  * Find number of subsets which gives sum of N (capacity)
- * 
+ *
  * We will build the same table with next difference:
  * dp[capacity][item index] is number of sets, sum of which gives capacity, for first $index elements in array
- * 
+ *
  * Table initialized:
  * First row: always 1. For capacity = 0 we always can use empty set
  * First column: if first item == column's capacity, 0 otherwise
- * 
+ *
  * Then we go item by item and fill table for each capacity.
  * If we skip this item, then dp[c][i] = dp[c][i-1]
  * If item is less than capacity, then we can add number of sets for dp[c - num[i]][i-1]
  *  which corresponds for subsets of previous items, for sum - this number capacity
- * 
+ *
  * Space: O(N * C) where N - number of items. C - capacity. This is the size of dp table.
  * Speed: O(N * C), since we need to complete dp table.
- * 
- * @param numbers Array of numbers 
+ *
+ * @param numbers Array of numbers
  * @param capacity Required capacity
- * @returns 
+ * @returns
  */
 export const fillDPTableWithNumberOfSets = (numbers: number[], capacity: number): number[][] => {
   let dp: number[][] = [];
