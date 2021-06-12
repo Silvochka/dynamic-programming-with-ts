@@ -1,4 +1,4 @@
-import { fillDPTable, getSelectedItems } from './mainAlgo';
+import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
 
 /**
  * Finds subset of array of positive numbers so sum is the requested sum
@@ -18,7 +18,7 @@ export const splitOnGivenSums = (numbers: number[], requiredSum: number) => {
     throw new Error('Requested sum should be positive number');
   }
 
-  let dp = fillDPTable(numbers, numbers, requiredSum);
+  let dp = fillDPTableWithSums(numbers, numbers, requiredSum);
   if (dp[requiredSum][numbers.length - 1] != requiredSum) {
     return [];
   }

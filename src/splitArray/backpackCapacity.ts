@@ -1,4 +1,4 @@
-import { fillDPTable, getSelectedItems } from './mainAlgo';
+import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
 
 /**
  * Uses main DP algo
@@ -13,7 +13,7 @@ export const getMaxProfit = (profits: number[], weights: number[], capacity: num
     throw new Error('Capacity should be positive number');
   }
 
-  let dp = fillDPTable(profits, weights, capacity);
+  let dp = fillDPTableWithSums(profits, weights, capacity);
   return {
     maxProfit: dp[capacity][profits.length - 1],
     selectedItems: getSelectedItems(dp, weights, capacity),

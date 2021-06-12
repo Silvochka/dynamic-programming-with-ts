@@ -1,4 +1,4 @@
-import { fillDPTable, getSelectedItems } from './mainAlgo';
+import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
 import { splitArrayByIndecies } from './helper';
 
 /**
@@ -21,7 +21,7 @@ export const splitOnEqualSums = (numbers: number[]) => {
 
   capacity /= 2;
 
-  let dp = fillDPTable(numbers, numbers, capacity);
+  let dp = fillDPTableWithSums(numbers, numbers, capacity);
   if (dp[capacity][numbers.length - 1] != capacity) {
     return [[], []];
   }

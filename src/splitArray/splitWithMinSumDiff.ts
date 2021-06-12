@@ -1,4 +1,4 @@
-import { fillDPTable, getSelectedItems } from './mainAlgo';
+import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
 import { splitArrayByIndecies } from './helper';
 
 /**
@@ -17,7 +17,7 @@ export const splitWithMinSumDiff = (numbers: number[]) => {
   let capacity = numbers.reduce((a, sum) => a + sum);
   let halfCapacity = Math.floor(capacity / 2);
 
-  let dp = fillDPTable(numbers, numbers, halfCapacity);
+  let dp = fillDPTableWithSums(numbers, numbers, halfCapacity);
   let groupCapacity = dp[halfCapacity][numbers.length - 1];
 
   return {
