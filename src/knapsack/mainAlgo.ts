@@ -1,5 +1,7 @@
 /**
- * This is part of bottom-up solution of dynamic programming algorithm.
+ * This is part of bottom-up solution of Knapsack dynamic programming algorithm.
+ * 
+ * Given list of items' weights and items' profits. Need to calculate max profit by given max capacity
  *
  * Completed table has (capacity+1) rows: from 0 to capacity
  * and profits.length columns: for each element

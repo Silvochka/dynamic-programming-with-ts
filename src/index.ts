@@ -1,1 +1,1 @@
-export * from './splitArray/index';
+export * from './knapsack/index';
