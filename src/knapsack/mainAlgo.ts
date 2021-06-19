@@ -10,14 +10,14 @@
  *
  * Table initialized:
  * First row: always 0. For capacity = 0 nothing can be taken.
- * First column: Depends on first item's weight. > capacity ? 0 : weights[0]
+ * First column: weights[0] > capacity ? 0 : profits[0]
  *
  * Then we go item by item and fill table for each capacity.
  * If item's weight won't fit into current capacity
  *  then we can't take it and use same profit based on same capacity from previous items
  *
  * Otherwise, we have 2 options: take this item or skip. We fill the table with maximum of these 2:
- * - take: profit[i] + profit of (capacity - weights[i]) for previouew i-1 items
+ * - take: profit[i] + profit of (capacity - weights[i]) for previouew i-1 items. 
  * - skip: same as item's weight won't fit into current capacity
  *
  * As the result, last column would contain maximum profits for each capacity from 0 to needed for all items.
@@ -59,8 +59,76 @@ export const fillDPTableWithSums = (profits: number[], weights: number[], capaci
 };
 
 /**
- * SImilar to the algorithm above. It solves the task of
- * Find number of subsets which gives sum of N (capacity)
+ * This is part of bottom-up solution of Knapsack dynamic programming algorithm.
+ * 
+ * Similar to the algorithm above.
+ * Given list of items' weights and items' profits. Need to calculate max profit by given max capacity.
+ * Each type of items could be used unlimited times.
+ * 
+ * Examples: 
+ * - divide rod on chunks to maximize profit
+ * - given unlimited fruits, fill the basket (f.e. apples, oranges) with limited capacity. 
+ *   Each fruit gives some profit which needs to be maximised
+ *
+ * Completed table has (capacity+1) rows: from 0 to capacity
+ * and profits.length columns: for each element
+ *
+ * Table[c][i] represents the maximum profit for capacity `c` calculated for the first `i` items.
+ *
+ * Table initialized:
+ * First row: always 0. For capacity = 0 nothing can be taken.
+ * First column capacity / weights[0] * profits[0]. Here we use whole diviging
+ *
+ * Then we go item by item and fill table for each capacity.
+ * If item's weight won't fit into current capacity
+ *  then we can't take it and use same profit based on same capacity from previous items
+ *
+ * Otherwise, we have 2 options: take this item or skip. We fill the table with maximum of these 2:
+ * - take: profit[i] + profit of (capacity - weights[i]) for previouew i items. 
+ *  Compared with previous also - we used only i-1 items. Here we canre-use i-th item
+ * - skip: same as item's weight won't fit into current capacity
+ *
+ * As the result, last column would contain maximum profits for each capacity from 0 to needed for all items.
+ *
+ * Space: O(N * C) where N - number of items. C - capacity. This is the size of dp table.
+ * Speed: O(N * C), since we need to complete dp table.
+ *
+ * @param profits Array of item's profits
+ * @param weights Array of item's weights
+ * @param capacity Backpack's capacity
+ * @returns Completed table of DP
+ */
+ export const fillDPTableWithSumsWithUnlimitedItems = (profits: number[], weights: number[], capacity: number): number[][] => {
+  if (profits.length != weights.length) {
+    throw new Error('Number of weights and profits should be the same');
+  }
+
+  let dp: number[][] = [];
+  for (let i = 0; i <= capacity; i++) {
+    dp[i] = [];
+    dp[i].push(Math.floor(i/weights[0]) * profits[0]);
+  }
+
+  for (let i = 0; i < profits.length; i++) {
+    dp[0][i] = 0;
+  }
+
+  for (let i = 1; i < profits.length; i++) {
+    for (let cap = 1; cap <= capacity; cap++) {
+      if (weights[i] > cap) {
+        dp[cap][i] = dp[cap][i - 1];
+      } else {
+        dp[cap][i] = Math.max(dp[cap][i - 1], profits[i] + dp[cap - weights[i]][i]);
+      }
+    }
+  }
+
+  return dp;
+};
+
+/**
+ * Solves the task of
+ * Find number of subsets which gives sum of N (capacity). Each number can be used only once
  *
  * We will build the same table with next difference:
  * dp[capacity][item index] is number of sets, sum of which gives capacity, for first $index elements in array
@@ -116,9 +184,10 @@ export const fillDPTableWithNumberOfSets = (numbers: number[], capacity: number)
  * @param dp Completed DP table
  * @param weights Array of item's weights
  * @param capacity Backpack's capacity
+ * @param unlimitedItems Flag to determine if we have unlimited number of items for each type
  * @returns Selected items's indecies in the backpack
  */
-export const getSelectedItems = (dp: number[][], weights: number[], capacity: number): number[] => {
+export const getSelectedItems = (dp: number[][], weights: number[], capacity: number, unlimitedItems: boolean = false): number[] => {
   if (dp.length != capacity + 1) {
     throw new Error(`DP table should has ${capacity + 1} rows, but has just ${dp.length}`);
   }
@@ -133,7 +202,10 @@ export const getSelectedItems = (dp: number[][], weights: number[], capacity: nu
   while (currentCapacity > 0) {
     if (currentItemIndex == 0) {
       if (dp[currentCapacity][currentItemIndex] != 0) {
-        selectedItems.push(currentItemIndex);
+        // for unlimited number we can re-use items
+        for (let i = 0; i < currentCapacity / weights[currentItemIndex]; i++) {
+          selectedItems.push(currentItemIndex);
+        }
       }
       break;
     }
@@ -141,6 +213,12 @@ export const getSelectedItems = (dp: number[][], weights: number[], capacity: nu
     if (dp[currentCapacity][currentItemIndex] != dp[currentCapacity][currentItemIndex - 1]) {
       selectedItems.push(currentItemIndex);
       currentCapacity -= weights[currentItemIndex];
+
+      // if we have unlimited - we can re-use item. otherwise, always go to previous item
+      // adding one since we subtracting one later for universal case
+      if (unlimitedItems) {
+        currentItemIndex++;
+      }
     }
 
     currentItemIndex--;
