@@ -1,4 +1,5 @@
 import { fillDPTableWithNumberOfSets } from './mainAlgo';
+import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
 
 /**
  * Given array of positive numbers and required sum
@@ -26,9 +27,8 @@ import { fillDPTableWithNumberOfSets } from './mainAlgo';
  * @returns Number of ways to do it
  */
 export const numberOfArifmetixEquations = (numbers: number[], requiredSum: number) => {
-  if (numbers.some((n) => n <= 0)) {
-    throw new Error('All numbers should be positive');
-  }
+  validatePositiveCapacity(requiredSum);
+  validatePositiveNumbers(numbers, "numbers");
 
   let pSetSum = (requiredSum + numbers.reduce((a, sum) => a + sum)) / 2;
   let dp = fillDPTableWithNumberOfSets(numbers, pSetSum);

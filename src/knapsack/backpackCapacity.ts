@@ -1,3 +1,4 @@
+import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
 import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
 
 /**
@@ -9,9 +10,9 @@ import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
  * @returns Maximum profit of items in backpack and selected items
  */
 export const getMaxProfit = (profits: number[], weights: number[], capacity: number) => {
-  if (capacity <= 0) {
-    throw new Error('Capacity should be positive number');
-  }
+  validatePositiveCapacity(capacity);
+  validatePositiveNumbers(profits, "profits");
+  validatePositiveNumbers(weights, "weights");
 
   let dp = fillDPTableWithSums(profits, weights, capacity);
   return {

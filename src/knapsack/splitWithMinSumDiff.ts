@@ -1,5 +1,6 @@
 import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
 import { splitArrayByIndecies } from './helper';
+import { validatePositiveNumbers } from './helper';
 
 /**
  * Splits array of positive numbers into 2 arrays with minimal difference in their sums
@@ -10,9 +11,7 @@ import { splitArrayByIndecies } from './helper';
  * @returns 2 subsets with mininal diff sum and these 2 subsets
  */
 export const splitWithMinSumDiff = (numbers: number[]) => {
-  if (numbers.some((n) => n <= 0)) {
-    throw new Error('All numbers should be positive');
-  }
+  validatePositiveNumbers(numbers, "numbers");
 
   let capacity = numbers.reduce((a, sum) => a + sum);
   let halfCapacity = Math.floor(capacity / 2);

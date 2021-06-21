@@ -18,4 +18,8 @@ describe('Number of subsets that gives required sum', () => {
   it('should throw an error if any number is negative', async () => {
     expect(() => numberOfSubsetsWithSum([-1], 5)).toThrow('All numbers should be positive');
   });
+
+  it('should throw an error if capacity is not positive number', async () => {
+    expect(() => numberOfSubsetsWithSum([1], 0)).toThrow('Capacity should be positive number');
+  });
 });

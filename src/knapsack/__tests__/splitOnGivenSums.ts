@@ -16,6 +16,6 @@ describe('Split on given sums', () => {
   });
 
   it('should throw an error if requested sum is not positive number', async () => {
-    expect(() => splitOnGivenSums([4], -5)).toThrow('Requested sum should be positive number');
+    expect(() => splitOnGivenSums([4], -5)).toThrow('Capacity should be positive number');
   });
 });

@@ -23,4 +23,12 @@ describe('Backpack capacity with unlimited number of items each type', () => {
   it('should throw an error if capacity is not positive number', async () => {
     expect(() => unlimitedItemsBackpackCapacity([], [], 0)).toThrow('Capacity should be positive number');
   });
+
+  it('should throw an error if any weight is negative', async () => {
+    expect(() => unlimitedItemsBackpackCapacity([-1], [1], 5)).toThrow('All profits should be positive');
+  });
+
+  it('should throw an error if any profit is negative', async () => {
+    expect(() => unlimitedItemsBackpackCapacity([1], [-1], 5)).toThrow('All weights should be positive');
+  });
 });

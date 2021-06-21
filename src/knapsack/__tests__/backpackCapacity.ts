@@ -22,4 +22,12 @@ describe('Backpack capacity', () => {
   it('should throw an error if capacity is not positive number', async () => {
     expect(() => getMaxProfit([], [], 0)).toThrow('Capacity should be positive number');
   });
+
+  it('should throw an error if any weight is negative', async () => {
+    expect(() => getMaxProfit([-1], [1], 5)).toThrow('All profits should be positive');
+  });
+
+  it('should throw an error if any profit is negative', async () => {
+    expect(() => getMaxProfit([1], [-1], 5)).toThrow('All weights should be positive');
+  });
 });

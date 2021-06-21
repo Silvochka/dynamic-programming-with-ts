@@ -1,4 +1,5 @@
 import { fillDPTableWithNumberOfSets } from './mainAlgo';
+import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
 
 /**
  * Finds number of subsets, sum of elements which gives requered sum
@@ -9,9 +10,8 @@ import { fillDPTableWithNumberOfSets } from './mainAlgo';
  * @returns Number of ways to do it
  */
 export const numberOfSubsetsWithSum = (numbers: number[], requiredSum: number) => {
-  if (numbers.some((n) => n <= 0)) {
-    throw new Error('All numbers should be positive');
-  }
+  validatePositiveNumbers(numbers, "numbers");
+  validatePositiveCapacity(requiredSum);
 
   let dp = fillDPTableWithNumberOfSets(numbers, requiredSum);
 

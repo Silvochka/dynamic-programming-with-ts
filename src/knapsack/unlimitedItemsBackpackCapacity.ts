@@ -1,4 +1,5 @@
 import { fillDPTableWithSumsWithUnlimitedItems, getSelectedItems } from './mainAlgo';
+import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
 
 /**
  * Uses main DP algo, given the unlimited number of items for each type
@@ -9,9 +10,9 @@ import { fillDPTableWithSumsWithUnlimitedItems, getSelectedItems } from './mainA
  * @returns Maximum profit of items in backpack and selected items
  */
 export const unlimitedItemsBackpackCapacity = (profits: number[], weights: number[], capacity: number) => {
-  if (capacity <= 0) {
-    throw new Error('Capacity should be positive number');
-  }
+  validatePositiveCapacity(capacity);
+  validatePositiveNumbers(profits, "profits");
+  validatePositiveNumbers(weights, "weights");
 
   let dp = fillDPTableWithSumsWithUnlimitedItems(profits, weights, capacity);
   return {

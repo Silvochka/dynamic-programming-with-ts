@@ -1,4 +1,5 @@
 import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
+import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
 
 /**
  * Finds subset of array of positive numbers so sum is the requested sum
@@ -10,13 +11,8 @@ import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
  * @returns Subset of elements, sum of which gives required sum
  */
 export const splitOnGivenSums = (numbers: number[], requiredSum: number) => {
-  if (numbers.some((n) => n <= 0)) {
-    throw new Error('All numbers should be positive');
-  }
-
-  if (requiredSum <= 0) {
-    throw new Error('Requested sum should be positive number');
-  }
+  validatePositiveNumbers(numbers, "numbers");
+  validatePositiveCapacity(requiredSum);
 
   let dp = fillDPTableWithSums(numbers, numbers, requiredSum);
   if (dp[requiredSum][numbers.length - 1] != requiredSum) {
