@@ -173,6 +173,51 @@ export const fillDPTableWithNumberOfSets = (numbers: number[], capacity: number)
 };
 
 /**
+ * Solves the task of
+ * Find number of subsets which gives sum of N (capacity). Each number can be used unlimited times
+ *
+ * We will build the same table with next difference:
+ * dp[capacity][item index] is number of sets, sum of which gives capacity, for first $index elements in array
+ *
+ * Table initialized:
+ * First row: always 1. For capacity = 0 we always can use empty set
+ *
+ * Then we go item by item and fill table for each capacity.
+ * If we skip this item, then dp[c][i] = dp[c][i-1]
+ * If item is less than capacity, then we can add number of sets for dp[c - num[i]][i]
+ *  which corresponds for subsets of all items (including this one), for sum - this number capacity
+ *
+ * Space: O(N * C) where N - number of items. C - capacity. This is the size of dp table.
+ * Speed: O(N * C), since we need to complete dp table.
+ *
+ * @param numbers Array of numbers
+ * @param capacity Required capacity
+ * @returns
+ */
+ export const fillDPTableWithNumberOfSetsUnlimitedItems = (numbers: number[], capacity: number): number[][] => {
+  let dp: number[][] = [];
+  for (let i = 0; i <= capacity; i++) {
+    dp[i] = [];
+  }
+
+  for (let i = 0; i < numbers.length; i++) {
+    dp[0][i] = 1;
+  }
+
+  // starting with coin #1, since we didn't initialize it
+  for (let i = 0; i < numbers.length; i++) {
+    for (let cap = 1; cap <= capacity; cap++) {
+      dp[cap][i] = i == 0 ? 0 : dp[cap][i - 1];
+      if (numbers[i] <= cap) {
+        dp[cap][i] += dp[cap - numbers[i]][i];
+      }
+    }
+  }
+
+  return dp;
+};
+
+/**
  * Finds selected items based on completed DP table.
  *
  * Start with the bottom right cell.
