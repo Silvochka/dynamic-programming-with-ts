@@ -273,6 +273,61 @@ export const fillDPTableWithMinimumNumberOfItemsUnlimitedItems = (numbers: numbe
 };
 
 /**
+ * Solves the task of
+ * Find maximum number of elements of subsets which gives sum of N (capacity). Each number can be used unlimited times
+ *
+ * Example:
+ * Given 1, 2, 3 coins need to get 5 with minimum number of coins.
+ *
+ * We will build the same table with next difference:
+ * dp[capacity][item index] is minimum number of coins, sum of which gives capacity, for first $index elements in array
+ *
+ * Table initialized:
+ * First row: always 0. We need 0 coins to exchange 0
+ *
+ * Then we go item by item and fill table for each capacity.
+ * We have 2 opportunity:
+ *  - If we skip this item, then dp[c][i] = dp[c][i-1]
+ *  - If item is less than capacity, then we can add number of sets for dp[c - num[i]][i]
+ *  which corresponds for subsets of all items (including this one), for sum - this number capacity
+ * We place max of these 2 into the dp[c][i]
+ *
+ * Space: O(N * C) where N - number of items. C - capacity. This is the size of dp table.
+ * Speed: O(N * C), since we need to complete dp table.
+ *
+ * @param numbers Array of numbers
+ * @param capacity Required capacity
+ * @returns
+ */
+export const fillDPTableWithMaximumNumberOfItemsUnlimitedItems = (numbers: number[], capacity: number): number[][] => {
+  let dp: number[][] = [];
+  for (let i = 0; i <= capacity; i++) {
+    dp[i] = [];
+  }
+
+  for (let i = 0; i < numbers.length; i++) {
+    dp[0][i] = 0;
+  }
+
+  // starting with coin #1, since we didn't initialize it
+  for (let i = 0; i < numbers.length; i++) {
+    for (let cap = 1; cap <= capacity; cap++) {
+      // we always include first item
+      dp[cap][i] = i == 0 ? Number.MIN_SAFE_INTEGER : dp[cap][i - 1];
+      if (numbers[i] <= cap) {
+        // if we include this item, we need to make sure that rest can be exchanged
+        // use Number.MIN_SAFE_INTEGER to distinguish 0 for first row and "impossible" for others
+        let includeOption =
+          dp[cap - numbers[i]][i] != Number.MIN_SAFE_INTEGER ? dp[cap - numbers[i]][i] + 1 : Number.MIN_SAFE_INTEGER;
+        dp[cap][i] = Math.max(dp[cap][i], includeOption);
+      }
+    }
+  }
+
+  return dp;
+};
+
+/**
  * Finds selected items based on completed DP table.
  *
  * Start with the bottom right cell.
