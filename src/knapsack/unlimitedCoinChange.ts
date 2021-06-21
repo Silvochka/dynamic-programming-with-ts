@@ -1,15 +1,15 @@
-import { fillDPTableWithNumberOfSetsUnlimitedItems, getSelectedItems } from './mainAlgo';
+import { fillDPTableWithNumberOfSetsUnlimitedItems } from './mainAlgo';
 import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
 
 /**
- * Uses main DP algo, given the unlimited number of items for each type
+ * Find number of subsets which gives sum of N (capacity). Each number can be used unlimited times
  *
  * @param numbers Array of numbers
- * @param target Sum that should be changed with coins
- * @returns Number of ways to change the target sum
+ * @param target Sum that should be exchanged with coins
+ * @returns Number of ways to exchange the target sum
  */
 export const unlimitedCoinChange = (numbers: number[], target: number) => {
-  validatePositiveNumbers(numbers, "numbers");
+  validatePositiveNumbers(numbers, 'numbers');
   validatePositiveCapacity(target);
 
   let dp = fillDPTableWithNumberOfSetsUnlimitedItems(numbers, target);

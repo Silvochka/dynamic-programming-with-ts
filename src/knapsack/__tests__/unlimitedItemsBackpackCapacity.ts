@@ -17,7 +17,9 @@ describe('Backpack capacity with unlimited number of items each type', () => {
   );
 
   it('should throw an error if number of weights and profits are not the same', async () => {
-    expect(() => unlimitedItemsBackpackCapacity([], [1], 1)).toThrow('Number of weights and profits should be the same');
+    expect(() => unlimitedItemsBackpackCapacity([], [1], 1)).toThrow(
+      'Number of weights and profits should be the same',
+    );
   });
 
   it('should throw an error if capacity is not positive number', async () => {

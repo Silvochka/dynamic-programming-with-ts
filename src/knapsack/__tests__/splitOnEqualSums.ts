@@ -24,7 +24,7 @@ describe('Split on equal sums', () => {
       [4, 100, 2, 2],
       [[], []],
     ],
-  ])('should return peroper max profit and selected items', (numbers: number[], expectedSubSets: number[][]) => {
+  ])('should return proper max profit and selected items', (numbers: number[], expectedSubSets: number[][]) => {
     let actualResult = splitOnEqualSums(numbers);
     expect(actualResult[0].sort()).toStrictEqual(expectedSubSets[0].sort());
     expect(actualResult[1].sort()).toStrictEqual(expectedSubSets[1].sort());

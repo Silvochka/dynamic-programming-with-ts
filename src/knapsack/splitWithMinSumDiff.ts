@@ -11,7 +11,7 @@ import { validatePositiveNumbers } from './helper';
  * @returns 2 subsets with mininal diff sum and these 2 subsets
  */
 export const splitWithMinSumDiff = (numbers: number[]) => {
-  validatePositiveNumbers(numbers, "numbers");
+  validatePositiveNumbers(numbers, 'numbers');
 
   let capacity = numbers.reduce((a, sum) => a + sum);
   let halfCapacity = Math.floor(capacity / 2);

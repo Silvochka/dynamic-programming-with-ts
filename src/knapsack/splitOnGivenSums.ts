@@ -11,7 +11,7 @@ import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
  * @returns Subset of elements, sum of which gives required sum
  */
 export const splitOnGivenSums = (numbers: number[], requiredSum: number) => {
-  validatePositiveNumbers(numbers, "numbers");
+  validatePositiveNumbers(numbers, 'numbers');
   validatePositiveCapacity(requiredSum);
 
   let dp = fillDPTableWithSums(numbers, numbers, requiredSum);

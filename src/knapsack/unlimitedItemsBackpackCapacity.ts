@@ -11,8 +11,8 @@ import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
  */
 export const unlimitedItemsBackpackCapacity = (profits: number[], weights: number[], capacity: number) => {
   validatePositiveCapacity(capacity);
-  validatePositiveNumbers(profits, "profits");
-  validatePositiveNumbers(weights, "weights");
+  validatePositiveNumbers(profits, 'profits');
+  validatePositiveNumbers(weights, 'weights');
 
   let dp = fillDPTableWithSumsWithUnlimitedItems(profits, weights, capacity);
   return {

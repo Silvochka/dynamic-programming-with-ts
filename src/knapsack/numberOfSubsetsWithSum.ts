@@ -10,7 +10,7 @@ import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
  * @returns Number of ways to do it
  */
 export const numberOfSubsetsWithSum = (numbers: number[], requiredSum: number) => {
-  validatePositiveNumbers(numbers, "numbers");
+  validatePositiveNumbers(numbers, 'numbers');
   validatePositiveCapacity(requiredSum);
 
   let dp = fillDPTableWithNumberOfSets(numbers, requiredSum);

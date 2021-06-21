@@ -11,7 +11,7 @@ import { validatePositiveNumbers } from './helper';
  * @returns 2 subsets with equal sum
  */
 export const splitOnEqualSums = (numbers: number[]) => {
-  validatePositiveNumbers(numbers, "numbers");
+  validatePositiveNumbers(numbers, 'numbers');
 
   let capacity = numbers.reduce((a, sum) => a + sum);
   if (capacity % 2 == 1) {

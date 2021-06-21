@@ -2,7 +2,7 @@ import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
 import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
 
 /**
- * Uses main DP algo
+ * Given list of items' weights and items' profits. Need to calculate max profit by given max capacity
  *
  * @param profits Array of item's profits
  * @param weights Array of item's weights
@@ -11,8 +11,8 @@ import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
  */
 export const getMaxProfit = (profits: number[], weights: number[], capacity: number) => {
   validatePositiveCapacity(capacity);
-  validatePositiveNumbers(profits, "profits");
-  validatePositiveNumbers(weights, "weights");
+  validatePositiveNumbers(profits, 'profits');
+  validatePositiveNumbers(weights, 'weights');
 
   let dp = fillDPTableWithSums(profits, weights, capacity);
   return {

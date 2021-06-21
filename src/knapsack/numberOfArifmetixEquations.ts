@@ -28,7 +28,7 @@ import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
  */
 export const numberOfArifmetixEquations = (numbers: number[], requiredSum: number) => {
   validatePositiveCapacity(requiredSum);
-  validatePositiveNumbers(numbers, "numbers");
+  validatePositiveNumbers(numbers, 'numbers');
 
   let pSetSum = (requiredSum + numbers.reduce((a, sum) => a + sum)) / 2;
   let dp = fillDPTableWithNumberOfSets(numbers, pSetSum);

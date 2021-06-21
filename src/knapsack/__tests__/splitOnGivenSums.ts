@@ -6,10 +6,13 @@ describe('Split on given sums', () => {
     [[3, 4, 5, 6], 7, [3, 4]],
     [[1, 4, 5, 11], 10, [1, 4, 5]],
     [[3, 7, 1, 1], 6, []],
-  ])('should return proper subset of items', (numbers: number[], requiredSum: number, expectedSubSets: number[]) => {
-    let actualResult = splitOnGivenSums(numbers, requiredSum);
-    expect(actualResult.sort()).toStrictEqual(expectedSubSets.sort());
-  });
+  ])(
+    'should return proper subset of items to split on given sums',
+    (numbers: number[], requiredSum: number, expectedSubSets: number[]) => {
+      let actualResult = splitOnGivenSums(numbers, requiredSum);
+      expect(actualResult.sort()).toStrictEqual(expectedSubSets.sort());
+    },
+  );
 
   it('should throw an error if any number is negative', async () => {
     expect(() => splitOnGivenSums([-1], 5)).toThrow('All numbers should be positive');
