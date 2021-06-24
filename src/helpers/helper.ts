@@ -16,3 +16,9 @@ export const validatePositiveNumbers = (numbers: number[], meaning: string) => {
     throw new Error(`All ${meaning} should be positive`);
   }
 };
+
+export const validateNonNegativeNumbers = (numbers: number[], meaning: string) => {
+  if (numbers.some((n) => n < 0)) {
+    throw new Error(`All ${meaning} should be not negative`);
+  }
+};

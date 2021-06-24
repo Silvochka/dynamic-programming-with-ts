@@ -1,4 +1,4 @@
-import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
+import { validatePositiveCapacity, validatePositiveNumbers } from '../helpers/helper';
 import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
 
 /**

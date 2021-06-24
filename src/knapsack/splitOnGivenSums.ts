@@ -1,5 +1,5 @@
 import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
-import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
+import { validatePositiveCapacity, validatePositiveNumbers } from '../helpers/helper';
 
 /**
  * Finds subset of array of positive numbers so sum is the requested sum

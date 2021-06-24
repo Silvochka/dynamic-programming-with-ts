@@ -1,5 +1,5 @@
 import { fillDPTableWithNumberOfSets } from './mainAlgo';
-import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
+import { validatePositiveCapacity, validatePositiveNumbers } from '../helpers/helper';
 
 /**
  * Given array of positive numbers and required sum

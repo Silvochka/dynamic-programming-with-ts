@@ -1,5 +1,5 @@
 import { fillDPTableWithMaximumNumberOfItemsUnlimitedItems } from './mainAlgo';
-import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
+import { validatePositiveCapacity, validatePositiveNumbers } from '../helpers/helper';
 
 /**
  * Find maximum number of elements of subsets which gives sum of N (capacity). Each number can be used unlimited times
@@ -13,6 +13,5 @@ export const maxCoinChange = (numbers: number[], target: number) => {
   validatePositiveCapacity(target);
 
   let dp = fillDPTableWithMaximumNumberOfItemsUnlimitedItems(numbers, target);
-  console.log(dp);
   return dp[target][numbers.length - 1];
 };

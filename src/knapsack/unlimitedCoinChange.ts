@@ -1,5 +1,5 @@
 import { fillDPTableWithNumberOfSetsUnlimitedItems } from './mainAlgo';
-import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
+import { validatePositiveCapacity, validatePositiveNumbers } from '../helpers/helper';
 
 /**
  * Find number of subsets which gives sum of N (capacity). Each number can be used unlimited times

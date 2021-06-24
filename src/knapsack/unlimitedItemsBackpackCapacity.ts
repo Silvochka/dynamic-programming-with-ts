@@ -1,5 +1,5 @@
 import { fillDPTableWithSumsWithUnlimitedItems, getSelectedItems } from './mainAlgo';
-import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
+import { validatePositiveCapacity, validatePositiveNumbers } from '../helpers/helper';
 
 /**
  * Uses main DP algo, given the unlimited number of items for each type

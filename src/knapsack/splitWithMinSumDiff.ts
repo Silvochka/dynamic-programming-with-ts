@@ -1,6 +1,5 @@
 import { fillDPTableWithSums, getSelectedItems } from './mainAlgo';
-import { splitArrayByIndecies } from './helper';
-import { validatePositiveNumbers } from './helper';
+import { splitArrayByIndecies, validatePositiveNumbers } from '../helpers/helper';
 
 /**
  * Splits array of positive numbers into 2 arrays with minimal difference in their sums

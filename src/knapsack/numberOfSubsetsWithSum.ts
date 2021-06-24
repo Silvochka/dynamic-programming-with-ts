@@ -1,5 +1,5 @@
 import { fillDPTableWithNumberOfSets } from './mainAlgo';
-import { validatePositiveCapacity, validatePositiveNumbers } from './helper';
+import { validatePositiveCapacity, validatePositiveNumbers } from '../helpers/helper';
 
 /**
  * Finds number of subsets, sum of elements which gives requered sum
